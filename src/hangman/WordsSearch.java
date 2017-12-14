@@ -18,8 +18,14 @@ public class WordsSearch {
         }
     }
 
-    public static List<String> searchingForWords(int lengthOfWord){
+    public List<String> searchingForWords(int lengthOfWord){
         List<String> words = new ArrayList<>();
+        String word = "";
+        while (in.hasNext()){
+            word = in.nextLine();
+            if (word.length() == lengthOfWord)
+                words.add(word);
+        }
 
         return words;
     }

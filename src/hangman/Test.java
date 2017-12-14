@@ -10,12 +10,12 @@ public class Test {
         System.out.println("Please type length of word: ");
         int lengthOfWord = in.nextInt();
 
+        WordsSearch wordsSearch = new WordsSearch();
+        List<String> words = wordsSearch.searchingForWords(lengthOfWord);
 
-        List<String> words = WordsSearch.searchingForWords(lengthOfWord);
-
-/*        while(in.hasNext()){
-            System.out.println(in.nextLine());
-        }*/
+        for(int i = 0; i < words.size(); i++){
+            System.out.println(words.get(i));
+        }
 
     }
 }
