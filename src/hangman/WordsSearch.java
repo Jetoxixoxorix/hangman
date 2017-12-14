@@ -11,18 +11,21 @@ public class WordsSearch {
 
     private Scanner in;
 
-    {
+    private Scanner fileSearching() {
         try {
             in = new Scanner(fileReader.getFileName());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Thera are no file with words.");
         }
+
+        return in;
     }
 
-    public List<String> searchingForWords(int lengthOfWord){
+    public List<String> searchingForWords(int lengthOfWord) {
+        fileSearching();
         List<String> words = new ArrayList<>();
         String word = "";
-        while (in.hasNext()){
+        while (in.hasNext()) {
             word = in.nextLine();
             if (word.length() == lengthOfWord)
                 words.add(word);
@@ -31,15 +34,16 @@ public class WordsSearch {
         return words;
     }
 
-    public String choosingWord(List<String> words){
+    public String choosingWord(int wordLength) {
+        List<String> words = searchingForWords(wordLength);
         int listLength = words.size();
         Random random = new Random();
         int wordIndex = 0;
         String word = "";
-        try{
+        try {
             wordIndex = random.nextInt(listLength);
             word = words.get(wordIndex);
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("There is no words of that length.");
         }
 

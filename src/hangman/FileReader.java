@@ -3,7 +3,7 @@ package hangman;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class FileReader implements FileGiver{
+public class FileReader implements FileGiver {
 
     @Override
     public File getFileName() throws FileNotFoundException {

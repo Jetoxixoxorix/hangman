@@ -11,19 +11,21 @@ public class Test {
         int lengthOfWord = in.nextInt();
 
         WordsSearch wordsSearch = new WordsSearch();
-        List<String> words = wordsSearch.searchingForWords(lengthOfWord);
+        /*List<String> words = wordsSearch.searchingForWords(lengthOfWord);*/
 
         String word = "";
-        for(int i = 0; i < 1; i++){
-            word = wordsSearch.choosingWord(words);
+        for (int i = 0; i < 3; i++) {
+            word = wordsSearch.choosingWord(lengthOfWord);
             System.out.println(word);
         }
 
 
+/*
         System.out.println();
         for(int i = 0; i < words.size(); i++){
             System.out.println(words.get(i));
         }
+*/
 
     }
 }
