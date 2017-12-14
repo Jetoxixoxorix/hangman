@@ -3,12 +3,13 @@ package hangman;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class WordsSearch {
-    FileReader fileReader = new FileReader();
+    private FileReader fileReader = new FileReader();
 
-    Scanner in;
+    private Scanner in;
 
     {
         try {
@@ -29,4 +30,20 @@ public class WordsSearch {
 
         return words;
     }
+
+    public String choosingWord(List<String> words){
+        int listLength = words.size();
+        Random random = new Random();
+        int wordIndex = 0;
+        String word = "";
+        try{
+            wordIndex = random.nextInt(listLength);
+            word = words.get(wordIndex);
+        }catch (IllegalArgumentException e){
+            System.out.println("There is no words of that length.");
+        }
+
+        return word;
+    }
+
 }

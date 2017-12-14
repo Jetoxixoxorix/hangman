@@ -13,6 +13,14 @@ public class Test {
         WordsSearch wordsSearch = new WordsSearch();
         List<String> words = wordsSearch.searchingForWords(lengthOfWord);
 
+        String word = "";
+        for(int i = 0; i < 1; i++){
+            word = wordsSearch.choosingWord(words);
+            System.out.println(word);
+        }
+
+
+        System.out.println();
         for(int i = 0; i < words.size(); i++){
             System.out.println(words.get(i));
         }
