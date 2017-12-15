@@ -15,7 +15,7 @@ public class WordsSearch {
         try {
             in = new Scanner(fileReader.getFileName());
         } catch (FileNotFoundException e) {
-            System.out.println("There are no file with words.");
+            System.out.println("There is no file with words.");
         }
 
         return in;
@@ -45,6 +45,7 @@ public class WordsSearch {
             word = words.get(wordIndex);
         } catch (IllegalArgumentException e) {
             System.out.println("There is no words of that length.");
+
         }
 
         return word;
