@@ -15,7 +15,7 @@ public class WordsSearch {
         try {
             in = new Scanner(fileReader.getFileName());
         } catch (FileNotFoundException e) {
-            System.out.println("Thera are no file with words.");
+            System.out.println("There are no file with words.");
         }
 
         return in;
@@ -34,8 +34,8 @@ public class WordsSearch {
         return words;
     }
 
-    public String choosingWord(int wordLength) {
-        List<String> words = searchingForWords(wordLength);
+    public String choosingWord(int lengthOfWord) {
+        List<String> words = searchingForWords(lengthOfWord);
         int listLength = words.size();
         Random random = new Random();
         int wordIndex = 0;

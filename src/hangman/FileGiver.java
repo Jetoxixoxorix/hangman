@@ -6,3 +6,4 @@ import java.io.FileNotFoundException;
 public interface FileGiver {
     File getFileName() throws FileNotFoundException;
 }
+

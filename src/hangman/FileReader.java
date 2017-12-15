@@ -1,13 +1,14 @@
 package hangman;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+
 
 public class FileReader implements FileGiver {
 
     @Override
-    public File getFileName() throws FileNotFoundException {
+    public File getFileName() {
         File words = new File("TextFile/words.txt");
         return words;
     }
 }
+
