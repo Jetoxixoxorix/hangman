@@ -4,8 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameLogic {
-    private static int errorsNumber;
     protected static boolean playing;
+    Subject error = new Subject();
+    ErrorsObserver errorsNumber = new ErrorsObserver(error);
 
     private void playingGame(int lengthOfWord) {
         WordsSearch wordsSearch = new WordsSearch();
@@ -18,10 +19,10 @@ public class GameLogic {
         if (playerWord.length() > 0)
             System.out.println("Word was chosen.");
 
-        while (!playerWord.toString().equals(word) && errorsNumber >= 0) {
+        while (!playerWord.toString().equals(word) && error.getState() >= 0) {
             System.out.println("Your word is: " + playerWord);
-            System.out.println("You can do " + errorsNumber + " more errors.");
-            choosingLetter(word, playerWord); //, errorsNumber
+            System.out.println("You can do " + error.getState() + " more errors.");
+            choosingLetter(word, playerWord);
         }
 
         if (playerWord.length() > 0) {
@@ -32,10 +33,6 @@ public class GameLogic {
             }
         }
 
-    }
-
-    private int errorDiff() {
-        return errorsNumber--;
     }
 
     public void choosingLetter(String word, StringBuilder playerWord) {
@@ -69,7 +66,7 @@ public class GameLogic {
         }
 
         if (numberOfHits == 0) {
-            errorDiff();
+            errorsNumber.update();
         }
 
         return playerWord;
@@ -77,7 +74,7 @@ public class GameLogic {
 
     public void startingGame() {
         int lengthOfWord = choosingLength();
-        errorsNumber = choosingErrors();
+        choosingErrors();
         playingGame(lengthOfWord);
     }
 
@@ -87,6 +84,10 @@ public class GameLogic {
         System.out.println("Please, choose length of the word!");
         try {
             lengthOfWord = in.nextInt();
+            if(lengthOfWord <= 0){
+                System.out.println("Wrong input. Try again.");
+                choosingLength();
+            }
         } catch (InputMismatchException e) {
             System.out.println("Wrong input. Try again.");
             choosingLength();
@@ -94,17 +95,19 @@ public class GameLogic {
         return lengthOfWord;
     }
 
-    private int choosingErrors() {
+    private void choosingErrors() {
         Scanner in = new Scanner(System.in);
-        int errorNumber = 0;
         System.out.println("Please, choose number of errors!");
         try {
-            errorNumber = in.nextInt();
+            error.setState(in.nextInt());
+            if (error.getState() < 0){
+                System.out.println("Wrong input. Try again.");
+                choosingErrors();
+            }
         } catch (InputMismatchException e) {
             System.out.println("Wrong input. Try again.");
             choosingErrors();
         }
-        return errorNumber;
     }
 
     protected boolean menu() {
