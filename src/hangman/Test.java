@@ -95,7 +95,7 @@ public class Test {
         Test test = new Test();
         int lengthOfWord = test.choosingLength();
         errorsNumber = test.choosingErrors();
-        playingGame(lengthOfWord); 
+        playingGame(lengthOfWord);
     }
 
     private int choosingLength(){
